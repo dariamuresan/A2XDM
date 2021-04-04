@@ -15,42 +15,11 @@
                 </a>
             </li>
             <li *ngIf = "!isActive()" class="nav-item">
-                <a class="nav-link" (click)="onLogin()">Login</a>
+                <a class="nav-link" (click)="onLogin()" routerLink="/home">Login</a>
             </li>
             <li *ngIf = "isActive()" class="nav-item">
-                <a class="nav-link" (click)="onLogout()">Logout</a>
+                <a class="nav-link" (click)="onLogout()" routerLink = "/">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
-<!--
-<nav class="navbar navbar-expand-lg  fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse">
-        <form  *ngIf = "isActive()" class="form-inline mx-auto">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav">
-            <li *ngIf = "isActive()" class="nav-item">
-                <a class="nav-link">Favourites</a>
-            </li>
-            <li class="nav-item" *ngIf = "isActive()">
-                <a href="#">
-                    <img height="40px" src="https://i2.wp.com/lipa-lipa.ro/wp-content/uploads/2018/06/Motive-pentru-care-e-gre%C8%99it-s%C4%83-mergem-la-reprezenta%C8%9Bii-cu-delfini.jpg?fit=1200%2C801&ssl=1">
-                </a>
-            </li>
-            <li *ngIf = "!isActive()" class="nav-item">
-                <a class="nav-link" (click)="onLogin()">Login</a>
-            </li>
-            <li *ngIf = "isActive()" class="nav-item">
-                <a class="nav-link" (click)="onLogout()">Logout</a>
-            </li>
-        </ul>
-    </div>
-</nav>
--->
