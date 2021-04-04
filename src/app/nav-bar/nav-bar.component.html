@@ -1,6 +1,11 @@
 <nav class="navbar navbar-expand-lg  fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand p-2" href="#">Navbar</a>
+    <a class="navbar-brand p-2" routerLink = "/home">Navbar</a>
     <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li *ngIf = "isActive()" class="nav-item">
+                <a class="nav-link" routerLink = "/movies">Movies</a>
+            </li>
+        </ul>
         <form  *ngIf = "isActive()" class="form-inline ml-auto">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
