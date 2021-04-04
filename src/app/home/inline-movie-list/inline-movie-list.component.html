@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="text-white m-3">Filme dintr-o categorie...</h3>
+        <div id="carouselExampleControls" class="carousel slide" data-touch="false" data-interval="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <ul class="list-inline d-flex justify-content-center align-items-center">
+                        <li class="list-inline-item mx-1 my-3" *ngFor="let t of titles">
+                            <app-movie-item></app-movie-item>
+                        </li>
+                    </ul>
+                </div>
+                <div class="carousel-item">
+                    <ul class="list-inline d-flex justify-content-center align-items-center">
+                        <li class="list-inline-item mx-1 my-3" *ngFor="let t of titles">
+                            <app-movie-item></app-movie-item>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a class="carousel-control-prev" style="width: 1%;" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" style="width: 1%;" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
