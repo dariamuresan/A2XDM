@@ -1,9 +1,9 @@
 <a href="#">
     <div class="card shadow bg-dark text-white" style="width: 10rem;">
-        <img class = "rounded card-img-top" src="https://images.pexels.com/photos/2240571/pexels-photo-2240571.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
+        <img class = "rounded card-img-top" [src]="movie.imagePath" alt="soon...">
         <div class="card-body" style="text-align:center">
-            <h5 class="card-title mx-auto">Here goes the title</h5>
-            <p class="card-text text-muted">year</p>
+            <h5 class="card-title mx-auto text-muted">{{movie.title}}</h5>
+            <p class="card-text text-muted">{{movie.release_date}}</p>
         </div>
     </div>
 </a>

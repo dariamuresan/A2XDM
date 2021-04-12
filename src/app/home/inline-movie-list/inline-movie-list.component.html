@@ -5,15 +5,15 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <ul class="list-inline d-flex justify-content-center align-items-center">
-                        <li class="list-inline-item mx-1 mt-0 mb-1" *ngFor="let t of titles">
-                            <app-movie-item></app-movie-item>
+                        <li class="list-inline-item mx-1 mt-0 mb-1" *ngFor="let m of moviesSlide1">
+                            <app-movie-item [movie]="m"></app-movie-item>
                         </li>
                     </ul>
                 </div>
                 <div class="carousel-item">
                     <ul class="list-inline d-flex justify-content-center align-items-center">
-                        <li class="list-inline-item mx-1 mt-0 mb-1" *ngFor="let t of titles">
-                            <app-movie-item></app-movie-item>
+                        <li class="list-inline-item mx-1 mt-0 mb-1" *ngFor="let m of moviesSlide2">
+                            <app-movie-item [movie]="m"></app-movie-item>
                         </li>
                     </ul>
                 </div>

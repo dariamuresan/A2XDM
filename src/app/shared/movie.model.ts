@@ -1,11 +1,18 @@
 export interface IMovie {
-    description : string;
-    genres : IGenre[];
-    id : string;
-    rating : number;
-    release_date : string;
+    description : string,
+    genres : IGenre[],
+    id : string,
+    rating : number,
+    release_date : string,
     title : string,
     actors : IActor,
+    imagePath : string;
+}
+
+export interface ICompressedMovie {
+    id : string,
+    release_date : Date,
+    title : string,
     imagePath : string;
 }
 
