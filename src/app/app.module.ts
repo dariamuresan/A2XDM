@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from "@angular/common/http";
+import { Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
 import { InlineMovieListComponent } from './home/inline-movie-list/inline-movie-list.component';
 import { MovieItemComponent } from './shared/movie-item/movie-item.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { MovieItemComponent } from './shared/movie-item/movie-item.component';
     HomeComponent,
     MoviesComponent,
     InlineMovieListComponent,
-    MovieItemComponent
+    MovieItemComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
