@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-inline mt-2">
+            <li class="list-inline-item mt-2 mx-4" *ngFor="let movie of movies">
+                <app-movie-item [movie]="movie"></app-movie-item>
+            </li>
+          </ul>
+    </div>
+</div>
