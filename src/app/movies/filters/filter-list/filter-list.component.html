@@ -1,16 +1,12 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="card bg-dark text-white rounded-0 border-top" style="width: 14rem;">
+        <div class="card bg-dark text-white rounded-0 border-bottom shadow" style="width: 14rem;">
             <div class="card-body">
-                <h5 class="card-title">Filter</h5>
-                <form action="/action_page.php">
-                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                    <label for="vehicle1"> I have a bike</label><br>
-                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-                    <label for="vehicle2"> I have a car</label><br>
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-                    <label for="vehicle3"> I have a boat</label><br><br>
-                </form> 
+                <h5 class="card-title">{{ title }}</h5>
+                <div *ngFor="let f of filters; let i = index;">
+                    <input type="checkbox" id="'vehicle' + i" name="'vehicle' + i" value="f">
+                    <label for="'vehicle' + i">{{ f }}</label><br>
+                </div>
             </div>
           </div>
     </div>
