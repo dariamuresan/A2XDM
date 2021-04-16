@@ -12,6 +12,8 @@ import { InlineMovieListComponent } from './home/inline-movie-list/inline-movie-
 import { MovieItemComponent } from './shared/movie-item/movie-item.component';
 import { LoginComponent } from './login/login.component';
 import { MoviesListComponent } from './movies/movies-list/movies-list.component';
+import { FiltersComponent } from './movies/filters/filters.component';
+import { FilterListComponent } from './movies/filters/filter-list/filter-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MoviesListComponent } from './movies/movies-list/movies-list.component'
     InlineMovieListComponent,
     MovieItemComponent,
     LoginComponent,
-    MoviesListComponent
+    MoviesListComponent,
+    FiltersComponent,
+    FilterListComponent
   ],
   imports: [
     BrowserModule,
