@@ -3,9 +3,11 @@
         <div class="card bg-dark text-white rounded-0 border-bottom shadow" style="width: 14rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ title }}</h5>
-                <div *ngFor="let f of filters; let i = index;">
-                    <input type="checkbox" id="'vehicle' + i" name="'vehicle' + i" value="f">
-                    <label for="'vehicle' + i">{{ f }}</label><br>
+                <div class="pl-4" *ngFor="let f of items; let i = index;">
+                    <label [for]="title + i">
+                        <input type="checkbox" [(ngModel)]="f.isSelected" [id]="title + i" [name]="title + i" [value]="f.name" (change) = "onChange()"/>
+                        <span>      {{ f.name }}</span>
+                    </label>
                 </div>
             </div>
           </div>

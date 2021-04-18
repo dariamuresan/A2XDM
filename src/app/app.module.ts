@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { MoviesListComponent } from './movies/movies-list/movies-list.component';
 import { FiltersComponent } from './movies/filters/filters.component';
 import { FilterListComponent } from './movies/filters/filter-list/filter-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FilterListComponent } from './movies/filters/filter-list/filter-list.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule, 
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GENRES, RATING } from './filters.data';
 
 @Component({
   selector: 'app-filters',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FiltersComponent implements OnInit {
 
-  filter1 : string[] = ["Genres", "comedy", "drama", "horror", "action", "adventure", "comedy", "drama", "horror", "action", "adventure"];
-  filter2 : string[] = ["Min. Rating", "1", "2", "3", "4", "5"];
+  genres : string[] = GENRES;
+  rating : string[] = RATING;
 
   constructor() { }
 

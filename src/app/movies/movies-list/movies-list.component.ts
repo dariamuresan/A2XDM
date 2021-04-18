@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MovieRestService } from 'src/app/shared/movie-rest.service';
 import { ICompressedMovie } from 'src/app/shared/movie.model';
 
@@ -9,13 +9,12 @@ import { ICompressedMovie } from 'src/app/shared/movie.model';
 })
 export class MoviesListComponent implements OnInit {
 
+  @Input()
   movies : ICompressedMovie[];
 
-  constructor(private movieService : MovieRestService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.movieService.getCompressedMovies(0, ["action"], "topRated")
-      .subscribe(movies => {this.movies = movies});
   }
 
 }
