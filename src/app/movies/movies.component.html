@@ -1,1 +1,22 @@
-<p>movies works!</p>
+<div class="row">
+    <div class="col-md-2">
+        <app-filters></app-filters>
+    </div>
+    <div class="col-md-10">
+        <app-movies-list [movies]="movies"></app-movies-list>
+    </div>
+</div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center mt-4">
+      <li class="page-item">
+        <a *ngIf="page > 0" class="page-link bg-dark text-muted" (click)="onPreviousPage()" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a *ngIf="movies.length > 0" class="page-link bg-dark text-muted" (click)="onNextPage()" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+</nav>

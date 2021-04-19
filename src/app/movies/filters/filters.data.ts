@@ -1,0 +1,2 @@
+export const GENRES : string[] = ["Genres", "Action", "Adventure", "Animation", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Music", "Mystery", "Romance", "Science Fiction", "TV Movie", "Thriller", "War", "Western"];
+export const RATING : string[] = ["Min. Rating", "1", "2", "3", "4", "5"];

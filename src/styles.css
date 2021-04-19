@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     height: fit-content;
-    background-color:rgb(245, 231, 210);
+    background-color:rgb(248, 247, 245);
+    padding-top: 62px;
     /*background-image: url('https://images.pexels.com/photos/8892/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')*/
 }

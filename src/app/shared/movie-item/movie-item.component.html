@@ -2,7 +2,9 @@
     <div class="card shadow bg-dark text-white" style="width: 10rem;">
         <img class = "rounded card-img-top" [src]="movie.imagePath" alt="soon...">
         <div class="card-body" style="text-align:center">
-            <h5 class="card-title mx-auto text-muted">{{movie.title}}</h5>
+            <h5 class="card-title mx-auto text-muted" style="height: 45px; overflow: hidden;  display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;">{{movie.title}}</h5>
             <p class="card-text text-muted">{{movie.release_date}}</p>
         </div>
     </div>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { baseUrl } from '../app.properties';
 import { ICompressedMovie, IGenre } from './movie.model';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 
 @Injectable({
@@ -11,12 +11,23 @@ import {HttpClient} from "@angular/common/http";
 export class MovieRestService {
   constructor(private http: HttpClient) { }
 
-  getCompressedMovies(page : number, genres : string[], category : string) : Observable<Array<ICompressedMovie>> {
-    let url : string = baseUrl + "/movies/" + category + "/" + page + "?genres=";
-    
-    for(let c of category)
-      url += c;
+  getCompressedMovies(page : number, sortMethod : string, genres?: string[], minRating?: string) : Observable<Array<ICompressedMovie>> {
+    let url : string = baseUrl + "/movies/" + sortMethod + "/" + page;
 
-    return this.http.get<Array<ICompressedMovie>>(url);
+    let params = new HttpParams()
+      .set("genres", "")
+      .set("minRating", "")
+
+    if ((genres != null) && (genres.length != 0)) {
+        params = params.set('genres', genres.join(","));
+    }
+    
+    if ((minRating != null) && (minRating !== "")) {
+        params = params.set('minRating', minRating);
+    }
+
+    return this.http.get<Array<ICompressedMovie>>(url, {
+      params: params
+    });
   }
 }

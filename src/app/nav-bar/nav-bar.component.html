@@ -1,29 +1,31 @@
-<nav class="navbar navbar-expand-lg  fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand p-2" routerLink = "/home">Navbar</a>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand p-2" routerLink = "/home">A2xDM</a>
     <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-            <li *ngIf = "isActive()" class="nav-item">
+        <ul *ngIf = "isActive()" class="navbar-nav mr-auto">
+            <li class="nav-item">
                 <a class="nav-link" routerLink = "/movies">Movies</a>
             </li>
         </ul>
-        <form  *ngIf = "isActive()" class="form-inline ml-auto">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form  *ngIf = "isActive()" class="form-inline">
+            <input class="form-control mr-sm-2 bg-dark" type="search" placeholder="Search something..." aria-label="Search">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <ul class="navbar-nav ml-auto">
-            <li *ngIf = "isActive()" class="nav-item">
+        <ul *ngIf = "isActive()" class="navbar-nav ml-auto">
+            <li class="nav-item">
                 <a class="nav-link">Favourites</a>
             </li>
-            <li class="nav-item" *ngIf = "isActive()">
+            <li class="nav-item d-flex align-items-center">
                 <a href="#">
-                    <img class="my-0 rounded-circle" height="40px" src="https://i2.wp.com/lipa-lipa.ro/wp-content/uploads/2018/06/Motive-pentru-care-e-gre%C8%99it-s%C4%83-mergem-la-reprezenta%C8%9Bii-cu-delfini.jpg?fit=1200%2C801&ssl=1">
+                    <img class="rounded-circle" height="35px" src="https://images.pexels.com/photos/64219/dolphin-marine-mammals-water-sea-64219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
                 </a>
             </li>
-            <li *ngIf = "!isActive()" class="nav-item">
-                <a class="nav-link" (click)="onLogin()" routerLink="/home">Login</a>
-            </li>
-            <li *ngIf = "isActive()" class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" (click)="onLogout()" routerLink = "/login">Logout</a>
+            </li>
+        </ul>
+        <ul *ngIf = "!isActive()" class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="onLogin()" routerLink="/home">Login</a>
             </li>
         </ul>
     </div>
