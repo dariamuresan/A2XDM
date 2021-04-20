@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IReview } from './review.model';
 
 @Component({
   selector: 'app-reviews',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewsComponent implements OnInit {
 
+  @Input()
+  reviews: IReview[];
+
+  newReview: IReview;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    console.log("soon");
   }
 
 }

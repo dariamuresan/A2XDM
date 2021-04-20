@@ -2,8 +2,8 @@ export interface IMovie {
     description : string,
     genres : IGenre[],
     id : string,
-    rating : number,
-    release_date : string,
+    movieRating : IMovieRating,
+    releaseDate : string,
     title : string,
     actors : IActor[],
     imagePath : string;
@@ -27,4 +27,9 @@ export interface IActor {
     name : string,
     imagePath : string,
     tmdbId : number;
+}
+
+export interface IMovieRating {
+    id : number,
+    rating : number
 }

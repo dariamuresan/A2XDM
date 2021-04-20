@@ -17,6 +17,7 @@ import { FilterListComponent } from './movies/filters/filter-list/filter-list.co
 import { FormsModule } from '@angular/forms';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { ReviewsComponent } from './movie-details/reviews/reviews.component';
+import { StarsComponent } from './movie-details/reviews/stars/stars.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ReviewsComponent } from './movie-details/reviews/reviews.component';
     FiltersComponent,
     FilterListComponent,
     MovieDetailsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    StarsComponent
   ],
   imports: [
     BrowserModule,

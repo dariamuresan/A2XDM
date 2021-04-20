@@ -1,1 +1,6 @@
 <h5>Reviews</h5>
+
+<blockquote *ngFor="let review of reviews">
+    <app-stars [starsNumber]="review.stars"></app-stars>
+    <cite>{{review.username}}</cite> says: <cite>{{review.comment}}</cite>
+</blockquote>

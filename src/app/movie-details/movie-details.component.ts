@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieRestService } from '../shared/movie-rest.service';
 import { IMovie, IGenre, IActor } from '../shared/movie.model';
+import { IReview } from './reviews/review.model';
 
 @Component({
   selector: 'app-movie-details',
@@ -16,17 +17,25 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   movieGenres : string[] = [];
   movieActors : string[] = [];
 
-  subscription : Subscription;
+  reviews : IReview[] = [];
+
+  movieSubscription : Subscription;
+  reviewsSubscription : Subscription;
 
   constructor(private movieService : MovieRestService, 
             private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.movieService.getMovie(this.activatedRoute.snapshot.params['id']).subscribe(movie => {
+    this.movieSubscription = this.movieService.getMovie(this.activatedRoute.snapshot.params['id']).subscribe(movie => {
       this.movie = movie;
       this.getGenres(this.movie);
+      this.getActors(this.movie);
     });
+
+    this.reviewsSubscription = this.movieService.getMovieReviews(this.activatedRoute.snapshot.params['id']).subscribe(reviews => {
+      this.reviews = reviews;
+    })
   }
 
   addToFavourites(movie : IMovie) {
@@ -44,13 +53,14 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   getActors(movie : IMovie) {
     let actors : IActor[] = movie.actors;
 
-    for(let actor of actors) {
-      this.movieActors.push(actor.name);
+    for(let i = 0; i < 10; i++) {
+      this.movieActors.push(actors[i].name);
     }
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.movieSubscription.unsubscribe();
+    this.reviewsSubscription.unsubscribe();
   }
 
 }

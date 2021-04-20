@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { baseUrl } from '../app.properties';
 import { ICompressedMovie, IGenre, IMovie } from './movie.model';
 import {HttpClient, HttpParams} from "@angular/common/http";
+import { IReview } from '../movie-details/reviews/review.model';
 
 
 @Injectable({
@@ -35,5 +36,11 @@ export class MovieRestService {
     let url : string = baseUrl + "/movies/" + id;
 
     return this.http.get<IMovie>(url);
+  }
+
+  getMovieReviews(id : string) : Observable<IReview[]> {
+    let url : string = baseUrl + "/movies/" + id + "/reviews";
+
+    return this.http.get<IReview[]>(url);
   }
 }
