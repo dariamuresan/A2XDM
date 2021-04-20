@@ -5,7 +5,7 @@ export interface IMovie {
     rating : number,
     release_date : string,
     title : string,
-    actors : IActor,
+    actors : IActor[],
     imagePath : string;
 }
 

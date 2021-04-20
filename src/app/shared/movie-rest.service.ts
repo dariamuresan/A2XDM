@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { baseUrl } from '../app.properties';
-import { ICompressedMovie, IGenre } from './movie.model';
+import { ICompressedMovie, IGenre, IMovie } from './movie.model';
 import {HttpClient, HttpParams} from "@angular/common/http";
 
 
@@ -29,5 +29,11 @@ export class MovieRestService {
     return this.http.get<Array<ICompressedMovie>>(url, {
       params: params
     });
+  }
+
+  getMovie(id : string) : Observable<IMovie> {
+    let url : string = baseUrl + "/movies/" + id;
+
+    return this.http.get<IMovie>(url);
   }
 }
