@@ -1,7 +1,7 @@
 export interface IReview {
     id : number,
     stars : number,
-    date : Date,
+    date : string,
     comment : string, 
     username : string,
     replies : IReply[]

@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { ReviewsComponent } from './movie-details/reviews/reviews.component';
 import { StarsComponent } from './movie-details/reviews/stars/stars.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { StarsComponent } from './movie-details/reviews/stars/stars.component';
     HttpClientModule, 
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

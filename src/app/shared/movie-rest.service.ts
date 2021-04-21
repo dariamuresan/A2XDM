@@ -43,4 +43,10 @@ export class MovieRestService {
 
     return this.http.get<IReview[]>(url);
   }
+
+  addReview(review : IReview, movieId : string) : Observable<IReview>{
+    let url : string = baseUrl + "/reviews/" + movieId + "/" + review.username;
+
+    return this.http.post<IReview>(url, review);
+  }
 }
