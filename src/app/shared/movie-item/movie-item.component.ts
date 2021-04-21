@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICompressedMovie } from '../movie.model';
 
 @Component({
@@ -11,9 +12,13 @@ export class MovieItemComponent implements OnInit {
   @Input()
   movie : ICompressedMovie;
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
+  }
+
+  openMovie(movie : ICompressedMovie): Promise<boolean> {
+    return this.router.navigate(['movie-details', movie.id]);
   }
 
 }

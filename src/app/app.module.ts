@@ -15,6 +15,10 @@ import { MoviesListComponent } from './movies/movies-list/movies-list.component'
 import { FiltersComponent } from './movies/filters/filters.component';
 import { FilterListComponent } from './movies/filters/filter-list/filter-list.component';
 import { FormsModule } from '@angular/forms';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { ReviewsComponent } from './movie-details/reviews/reviews.component';
+import { StarsComponent } from './movie-details/reviews/stars/stars.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,10 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     MoviesListComponent,
     FiltersComponent,
-    FilterListComponent
+    FilterListComponent,
+    MovieDetailsComponent,
+    ReviewsComponent,
+    StarsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule, 
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

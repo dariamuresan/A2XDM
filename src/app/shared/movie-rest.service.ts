@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { baseUrl } from '../app.properties';
-import { ICompressedMovie, IGenre } from './movie.model';
+import { ICompressedMovie, IGenre, IMovie } from './movie.model';
 import {HttpClient, HttpParams} from "@angular/common/http";
+import { IReview } from '../movie-details/reviews/review.model';
 
 
 @Injectable({
@@ -29,5 +30,23 @@ export class MovieRestService {
     return this.http.get<Array<ICompressedMovie>>(url, {
       params: params
     });
+  }
+
+  getMovie(id : string) : Observable<IMovie> {
+    let url : string = baseUrl + "/movies/" + id;
+
+    return this.http.get<IMovie>(url);
+  }
+
+  getMovieReviews(id : string) : Observable<IReview[]> {
+    let url : string = baseUrl + "/movies/" + id + "/reviews";
+
+    return this.http.get<IReview[]>(url);
+  }
+
+  addReview(review : IReview, movieId : string) : Observable<IReview>{
+    let url : string = baseUrl + "/reviews/" + movieId + "/" + review.username;
+
+    return this.http.post<IReview>(url, review);
   }
 }
