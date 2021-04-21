@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { IReview } from './review.model';
 
 @Component({
@@ -11,7 +12,13 @@ export class ReviewsComponent implements OnInit {
   @Input()
   reviews: IReview[];
 
-  newReview: IReview;
+  @ViewChild('f') signupForm: NgForm;
+  newReview: IReview = {id : null,
+    stars : null,
+    date : null,
+    comment : "", 
+    username : "",
+    replies : [] };
 
   constructor() { }
 

@@ -1,0 +1,19 @@
+.container {
+    margin: 20px;
+    /*background-color: rgb(224, 209, 209);*/
+}
+
+blockquote {
+    padding-left: 20px;
+    border-left: 2px solid rosybrown;
+}
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.review-form {
+    /*max-width: 320px;*/
+    border-left: 2px solid rosybrown;
+    padding: 20px;
+}
