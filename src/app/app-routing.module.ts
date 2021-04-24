@@ -5,6 +5,7 @@ import { MoviesComponent } from './movies/movies.component';
 import {LoginComponent} from './login/login.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 const routes: Routes = [
   { path : '', redirectTo : '/home', pathMatch: 'full'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path : 'movies', component : MoviesComponent},
   { path : 'login', component : LoginComponent},
   { path : "favourites", component : FavouritesComponent},
-  { path : 'movie-details/:id', component : MovieDetailsComponent}
+  { path : 'movie-details/:id', component : MovieDetailsComponent},
+  { path : "search-result/:name", component : SearchResultComponent}
 ]
 
 @NgModule({
