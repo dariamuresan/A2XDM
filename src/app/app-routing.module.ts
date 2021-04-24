@@ -14,7 +14,7 @@ const routes: Routes = [
   { path : 'login', component : LoginComponent},
   { path : "favourites", component : FavouritesComponent},
   { path : 'movie-details/:id', component : MovieDetailsComponent},
-  { path : "search-result/:name", component : SearchResultComponent}
+  { path : "search-result/:searchKey", component : SearchResultComponent}
 ]
 
 @NgModule({

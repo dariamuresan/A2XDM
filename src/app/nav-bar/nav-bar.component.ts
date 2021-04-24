@@ -16,10 +16,10 @@ export class NavBarComponent implements OnInit {
     this.user = 1;
   }
 
-  onSearch() : Promise<boolean> {
+  onInput() {
     console.log(this.whatWeSearchFor);
 
-    return this.router.navigate(['search-result', this.whatWeSearchFor]);
+    this.router.navigate(['search-result', this.whatWeSearchFor]);
   }
 
   isActive() : number {

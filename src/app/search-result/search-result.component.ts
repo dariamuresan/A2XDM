@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { MovieRestService } from '../shared/movie-rest.service';
+import { ICompressedMovie } from '../shared/movie.model';
 
 @Component({
   selector: 'app-search-result',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchResultComponent implements OnInit {
 
-  constructor() { }
+  movies : ICompressedMovie[] = [];
+
+  constructor(private movieService : MovieRestService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.pipe(
+      switchMap((params : Params) => {
+        let searchKey = params['searchKey'];
+        return this.movieService.getSearchedMovies(searchKey, 0);
+      })
+    ).subscribe(movies => {
+      this.movies = movies;
+    });
   }
 
 }

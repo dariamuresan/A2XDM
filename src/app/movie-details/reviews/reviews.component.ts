@@ -33,8 +33,6 @@ export class ReviewsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("soon");
-
     let date = new Date();
     this.newReview.date = this.datePipe.transform(date,"dd-MM-yyyy");
 

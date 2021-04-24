@@ -73,4 +73,16 @@ export class MovieRestService {
 
     return this.http.get<boolean>(url);
   }
+
+  getSearchedMovies(searchKey : string, page : number) : Observable<ICompressedMovie[]> {
+    let url : string = baseUrl + "/search/title";
+
+    let params = new HttpParams()
+      .set("title", searchKey)
+      .set("page", page.toString());
+
+    return this.http.get<ICompressedMovie[]>(url, {
+      params: params
+    });
+  }
 }
