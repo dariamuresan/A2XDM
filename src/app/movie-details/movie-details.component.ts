@@ -19,27 +19,48 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   reviews : IReview[] = [];
 
+  isFavourite : boolean = false;
+
   movieSubscription : Subscription;
   reviewsSubscription : Subscription;
+  favouriteSubscription : Subscription;
 
   constructor(private movieService : MovieRestService, 
             private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.movieSubscription = this.movieService.getMovie(this.activatedRoute.snapshot.params['id']).subscribe(movie => {
+    let movieId = this.activatedRoute.snapshot.params['id'];
+
+    this.movieSubscription = this.movieService.getMovie(movieId).subscribe(movie => {
       this.movie = movie;
       this.getGenres(this.movie);
       this.getActors(this.movie);
     });
 
-    this.reviewsSubscription = this.movieService.getMovieReviews(this.activatedRoute.snapshot.params['id']).subscribe(reviews => {
+    this.reviewsSubscription = this.movieService.getMovieReviews(movieId).subscribe(reviews => {
       this.reviews = reviews;
+    });
+
+    this.favouriteSubscription = this.movieService.checkIfFavouriteMovie(movieId, "daria").subscribe(response => {
+      this.isFavourite = response;
     })
   }
 
-  addToFavourites(movie : IMovie) {
-    console.log("I will add it to favourites");
+  onAddToFavourites(movieId : string) {
+    if(this.isFavourite) {
+      this.removeFromFavourites(movieId);
+    }
+    else
+      this.addToFavourites(movieId);
+  }
+
+  removeFromFavourites(movieId : string) {
+    this.movieService.removeMovieFromFavourites(movieId, "daria").subscribe(() => {this.isFavourite = false;});
+  }
+
+  addToFavourites(movieId : string) {
+    this.movieService.addMovieToFavourites(movieId, "daria").subscribe(() => {this.isFavourite = true;});
   }
 
   getGenres(movie : IMovie) {
