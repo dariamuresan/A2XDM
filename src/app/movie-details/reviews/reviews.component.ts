@@ -36,9 +36,6 @@ export class ReviewsComponent implements OnInit {
     let date = new Date();
     this.newReview.date = this.datePipe.transform(date,"dd-MM-yyyy");
 
-    console.log(this.newReview.date);
-
-
     this.movieService.addReview(this.newReview, this.movieId).subscribe(newReview => {
       this.reviews.push(newReview);
     })

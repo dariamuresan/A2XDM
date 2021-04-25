@@ -1,0 +1,34 @@
+<div class="">
+    <blockquote *ngFor="let reply of replies">
+        <small style="text-shadow: peachpuff;">{{reply.date }} - </small>
+        <cite>{{reply.username}}</cite> says: <cite>{{ reply.content}}</cite>
+    </blockquote>
+    
+    <form class="form-inline" (ngSubmit)="onAddReply()" #f="ngForm">
+        <input
+            type="text" 
+            id="content"
+            placeholder="Add a reply..." 
+            class="form-control form-control-sm"
+            [(ngModel)]="newReply.content"
+            name="content">
+
+        <input
+            type="text" 
+            id="username"
+            placeholder="Username" 
+            class="form-control form-control-sm"
+            style="margin-left: 10px;"
+            [(ngModel)]="newReply.username"
+            name="username"
+            required>
+
+        <button 
+            type="submit" 
+            class="btn btn-outline-dark btn-sm"
+            style="margin-left: 10px;"
+            [disabled]="!f.valid">
+                Add
+        </button>
+    </form>
+</div>

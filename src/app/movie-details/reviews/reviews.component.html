@@ -4,6 +4,7 @@
         <app-stars [starsNumber]="review.stars"></app-stars>
         <small style="text-shadow: peachpuff;">{{ review.date }} - </small>
         <cite>{{review.username}}</cite> says: <cite>{{review.comment}}</cite>
+        <app-replies [replies]="review.replies" [reviewId]="review.id"></app-replies>
     </blockquote>
 
     <h5>Add your review</h5>

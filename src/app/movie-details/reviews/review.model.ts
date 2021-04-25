@@ -11,5 +11,5 @@ export interface IReply {
     id : number, 
     username : string,
     content : string,
-    date : Date
+    date : string
 }
