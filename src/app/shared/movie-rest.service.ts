@@ -49,4 +49,40 @@ export class MovieRestService {
 
     return this.http.post<IReview>(url, review);
   }
+
+  getFavouritesMovies(username : string) : Observable<ICompressedMovie[]> {
+    let url : string = baseUrl + "/watchlist/" + username;
+
+    return this.http.get<ICompressedMovie[]>(url);
+  }
+
+  addMovieToFavourites(movieId : string, username : string) : Observable<any> {
+    let url : string = baseUrl + "/watchlist/" + movieId + "/" + username;
+
+    return this.http.post(url, {});
+  }
+
+  removeMovieFromFavourites(movieId : string, username : string) : Observable<any> {
+    let url : string = baseUrl + "/watchlist/" + movieId + "/" + username;
+
+    return this.http.delete(url, {});
+  }
+
+  checkIfFavouriteMovie(movieId : string, username : string) : Observable<boolean> {
+    let url : string = baseUrl + "/watchlist/exists/" + movieId + "/" + username;
+
+    return this.http.get<boolean>(url);
+  }
+
+  getSearchedMovies(searchKey : string, page : number) : Observable<ICompressedMovie[]> {
+    let url : string = baseUrl + "/search/title";
+
+    let params = new HttpParams()
+      .set("title", searchKey)
+      .set("page", page.toString());
+
+    return this.http.get<ICompressedMovie[]>(url, {
+      params: params
+    });
+  }
 }

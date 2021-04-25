@@ -19,6 +19,8 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { ReviewsComponent } from './movie-details/reviews/reviews.component';
 import { StarsComponent } from './movie-details/reviews/stars/stars.component';
 import { DatePipe } from '@angular/common';
+import { FavouritesComponent } from './favourites/favourites.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { DatePipe } from '@angular/common';
     FilterListComponent,
     MovieDetailsComponent,
     ReviewsComponent,
-    StarsComponent
+    StarsComponent,
+    FavouritesComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
