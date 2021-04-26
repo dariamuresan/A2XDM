@@ -1,0 +1,27 @@
+<div>
+    <blockquote *ngFor="let reply of replies">
+        <small style="text-shadow: peachpuff;">{{reply.date }} - </small>
+        <cite>{{reply.username}}</cite> says: <cite>{{ reply.content}}</cite>
+        <div *ngIf="reply.username == currentLoggedUser" style="margin-top: 10px;">
+            <a (click)="onDelete(reply)" style="color: orangered; font-size: 12px; cursor: pointer; margin-right: 10px;">Delete</a>
+        </div>
+    </blockquote>
+    
+    <form class="form-inline" (ngSubmit)="onAddReply()" #f="ngForm">
+        <input
+            type="text" 
+            id="content"
+            placeholder="Add a reply..." 
+            class="form-control form-control-sm"
+            [(ngModel)]="newReply.content"
+            name="content">
+
+        <button 
+            type="submit" 
+            class="btn btn-outline-dark btn-sm"
+            style="margin-left: 10px;"
+            [disabled]="!f.valid">
+                Add
+        </button>
+    </form>
+</div>

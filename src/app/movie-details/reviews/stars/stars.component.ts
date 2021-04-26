@@ -8,8 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class StarsComponent implements OnInit {
 
   @Input()
-  starsNumber : number;
+  set starsNumber(n : number) {
+    this._starsNumber = n;
+    this.generateStarsArray();
+  }
 
+  private _starsNumber : number;
   stars : number[] = [];
 
   constructor() { }
@@ -19,7 +23,9 @@ export class StarsComponent implements OnInit {
   }
 
   generateStarsArray() {
-    for(let i = 0; i < this.starsNumber; i++)
+    this.stars = [];
+
+    for(let i = 0; i < this._starsNumber; i++)
       this.stars.push(1);
   }
 

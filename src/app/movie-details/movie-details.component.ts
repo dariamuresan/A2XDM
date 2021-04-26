@@ -17,8 +17,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   movieGenres : string[] = [];
   movieActors : string[] = [];
 
-  reviews : IReview[] = [];
+  reviews : IReview[];
 
+  reviewsArrived : boolean = false;
   isFavourite : boolean = false;
 
   movieSubscription : Subscription;
@@ -40,6 +41,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
     this.reviewsSubscription = this.movieService.getMovieReviews(movieId).subscribe(reviews => {
       this.reviews = reviews;
+      this.reviewsArrived = true;
     });
 
     this.favouriteSubscription = this.movieService.checkIfFavouriteMovie(movieId, "daria").subscribe(response => {

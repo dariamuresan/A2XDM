@@ -1,6 +1,7 @@
-import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { DatePipe, ViewportScroller } from '@angular/common';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
 import { MovieRestService } from 'src/app/shared/movie-rest.service';
 import { IReview } from './review.model';
 
@@ -12,12 +13,26 @@ import { IReview } from './review.model';
 export class ReviewsComponent implements OnInit {
 
   @Input()
-  reviews: IReview[];
+  reviews : IReview[] = [];
   @Input()
   movieId: string;
 
-  @ViewChild('f') signupForm: NgForm;
-  newReview: IReview = {id : null,
+  currentLoggedUser : string;
+  userAddedReview : boolean = false;
+
+  @ViewChild('addForm') addReviewForm: NgForm;
+  newReview: IReview = {
+    id : null,
+    stars : null,
+    date : "",
+    comment : "", 
+    username : "",
+    replies : [] 
+  };
+
+  @ViewChild('editForm') editReviewForm: NgForm;
+  userReview: IReview = {
+    id : null,
     stars : null,
     date : "",
     comment : "", 
@@ -26,30 +41,72 @@ export class ReviewsComponent implements OnInit {
   };
 
   constructor(private movieService : MovieRestService,
+    private authenticationService : AuthenticationService,
+    private viewportScroller: ViewportScroller,
     private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
+    this.currentLoggedUser = this.authenticationService.getCurrentLoggedUser();
+
+    this.checkUserHasAddedAReview();
   }
 
-  onSubmit() {
-    let date = new Date();
-    this.newReview.date = this.datePipe.transform(date,"dd-MM-yyyy");
+  private checkUserHasAddedAReview() {
+    for(let review of this.reviews) {
+      if(review.username == this.currentLoggedUser) {
+        this.userAddedReview = true;
+        this.userReview = review;
+      }
+    }
+  }
 
-    console.log(this.newReview.date);
+  onDelete(review : IReview) {
+    if(confirm('Are you sure you want to delete this review ?')) {
+      this.movieService.deleteReview(review).subscribe();
 
+      this.reviews = this.reviews.filter(r => {return r.id != review.id });
+
+      this.userAddedReview = false;
+    }
+  }
+
+  onClick(elementId: string): void { 
+    this.viewportScroller.scrollToAnchor(elementId);
+  }
+
+  onAddReview() {
+    this.newReview.date = this.getDate();
+
+    this.newReview.username = this.currentLoggedUser;
 
     this.movieService.addReview(this.newReview, this.movieId).subscribe(newReview => {
       this.reviews.push(newReview);
     })
 
-    this.newReview = {id : null,
+    this.userAddedReview = true;
+    this.userReview = this.newReview;
+
+    this.newReview = {
+      id : null,
       stars : null,
       date : null,
       comment : "", 
       username : "",
       replies : [] 
     };
+  }
+
+  onEditReview() {
+    this.userReview.date = this.getDate();
+
+    this.movieService.editReview(this.userReview).subscribe(() => { 
+      alert('Review edited !') });
+  }
+
+  private getDate() : string {
+    let date = new Date();
+    return this.datePipe.transform(date,"dd-MM-yyyy");
   }
 
 }

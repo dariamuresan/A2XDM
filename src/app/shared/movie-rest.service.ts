@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { baseUrl } from '../app.properties';
 import { ICompressedMovie, IGenre, IMovie } from './movie.model';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import { IReview } from '../movie-details/reviews/review.model';
+import { IReply, IReview } from '../movie-details/reviews/review.model';
 
 
 @Injectable({
@@ -48,6 +48,30 @@ export class MovieRestService {
     let url : string = baseUrl + "/reviews/" + movieId + "/" + review.username;
 
     return this.http.post<IReview>(url, review);
+  }
+
+  editReview(review : IReview) : Observable<any> {
+    let url : string = baseUrl + "/reviews/" + review.id + "/" + review.username;
+
+    return this.http.put<IReview>(url, review);
+  }
+
+  deleteReview(review : IReview) : Observable<any> {
+    let url : string = baseUrl + "/reviews/" + review.id + "/" + review.username;
+
+    return this.http.delete<IReview>(url);
+  }
+
+  addReplyToRview(reply : IReply, reviewId : number) : Observable<IReply> {
+    let url : string = baseUrl + "/replies/" + reviewId + "/" + reply.username;
+
+    return this.http.post<IReply>(url, reply);
+  }
+
+  deleteReply(reply : IReply) : Observable<any> {
+    let url : string = baseUrl + "/replies/" + reply.id + "/" + reply.username;
+
+    return this.http.delete<IReply>(url);
   }
 
   getFavouritesMovies(username : string) : Observable<ICompressedMovie[]> {
