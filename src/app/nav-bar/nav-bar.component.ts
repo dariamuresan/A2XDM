@@ -17,9 +17,11 @@ export class NavBarComponent implements OnInit {
   }
 
   onInput() {
-    console.log(this.whatWeSearchFor);
-
     this.router.navigate(['search-result', this.whatWeSearchFor]);
+  }
+
+  onProfile() {
+    this.router.navigate(['profile']);
   }
 
   isActive() : number {

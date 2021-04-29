@@ -22,6 +22,7 @@ import { DatePipe } from '@angular/common';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { RepliesComponent } from './movie-details/reviews/replies/replies.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RepliesComponent } from './movie-details/reviews/replies/replies.compon
     StarsComponent,
     FavouritesComponent,
     SearchResultComponent,
-    RepliesComponent
+    RepliesComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
