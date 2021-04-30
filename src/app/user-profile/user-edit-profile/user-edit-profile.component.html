@@ -1,0 +1,66 @@
+<div class="card mb-3" style="max-width: 1300px; min-height: 400px; margin-left: 1.3in; margin-top: 3cm;">
+    <div class="row no-gutters" style="min-height: 400px;">
+        <div class="col-md-4 align-self-center">
+            <img class="rounded-circle mx-auto d-block"  width="150px" src="https://images.pexels.com/photos/1013335/pexels-photo-1013335.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
+            <p class="text-center">Hello, username!</p>
+        </div>
+        <div class="col-md-6 align-self-center">
+            <div class="card-body">
+                <form [formGroup]="userInfoForm" (ngSubmit)="onSubmit()">
+                    <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="profilePictureFile" (change)="onFileChange($event)">
+                        <label class="custom-file-label" for="profilePictureFile">Choose a picture for your profile...</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <div class="form-row">
+                            <div class="col">
+                              <input 
+                                    id="firstName" 
+                                    type="text" 
+                                    class="form-control form-control-sm" 
+                                    placeholder="First name"
+                                    formControlName="firstName">
+                                <small 
+                                    *ngIf="!userInfoForm.get('firstName').valid && userInfoForm.get('firstName').touched">
+                                        * This field is required
+                                </small>
+                            </div>
+                            <div class="col">
+                                <input 
+                                    id="lastName" 
+                                    type="text" 
+                                    class="form-control form-control-sm" 
+                                    placeholder="Last name"
+                                    formControlName="lastName">
+                                <small 
+                                    *ngIf="!userInfoForm.get('lastName').valid && userInfoForm.get('lastName').touched">
+                                        * This field is required
+                                </small>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input 
+                            type="email" 
+                            class="form-control form-control-sm" 
+                            id="email" 
+                            aria-describedby="emailHelp"
+                            formControlName="email">
+                        <small 
+                            *ngIf="!userInfoForm.get('email').valid && userInfoForm.get('email').touched">
+                                * This field is required
+                        </small>
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <button [disabled]="!userInfoForm.valid" type="submit" class="btn btn-dark">Save</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+</div>

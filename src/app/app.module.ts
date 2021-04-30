@@ -14,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { MoviesListComponent } from './movies/movies-list/movies-list.component';
 import { FiltersComponent } from './movies/filters/filters.component';
 import { FilterListComponent } from './movies/filters/filter-list/filter-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { ReviewsComponent } from './movie-details/reviews/reviews.component';
 import { StarsComponent } from './movie-details/reviews/stars/stars.component';
@@ -23,6 +23,7 @@ import { FavouritesComponent } from './favourites/favourites.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { RepliesComponent } from './movie-details/reviews/replies/replies.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserEditProfileComponent } from './user-profile/user-edit-profile/user-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -42,13 +43,15 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     FavouritesComponent,
     SearchResultComponent,
     RepliesComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserEditProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
