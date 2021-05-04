@@ -24,6 +24,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { RepliesComponent } from './movie-details/reviews/replies/replies.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserEditProfileComponent } from './user-profile/user-edit-profile/user-edit-profile.component';
+import { SortSelectorComponent } from './movies/sort-selector/sort-selector.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { UserEditProfileComponent } from './user-profile/user-edit-profile/user-
     SearchResultComponent,
     RepliesComponent,
     UserProfileComponent,
-    UserEditProfileComponent
+    UserEditProfileComponent,
+    SortSelectorComponent
   ],
   imports: [
     BrowserModule,
