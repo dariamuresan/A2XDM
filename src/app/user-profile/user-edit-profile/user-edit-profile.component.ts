@@ -15,7 +15,8 @@ export class UserEditProfileComponent implements OnInit {
     firstName: 'Daria',
     lastName: 'Muresan',
     email: 'md@yahoo.com',
-    profilePicture: 'not-yet'
+    profilePicture: 'not-yet',
+    isNotified: false
   };
 
   userInfoForm: FormGroup;
@@ -28,7 +29,8 @@ export class UserEditProfileComponent implements OnInit {
       file: new FormControl(null),
       'firstName': new FormControl(this.user.firstName, Validators.required),
       'lastName': new FormControl(this.user.lastName, Validators.required),
-      'email': new FormControl(this.user.email, Validators.required)
+      'email': new FormControl(this.user.email, Validators.required),
+      'notification': new FormControl(this.user.isNotified)
     })
   }
 

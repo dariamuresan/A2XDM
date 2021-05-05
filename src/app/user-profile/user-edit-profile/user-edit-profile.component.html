@@ -54,6 +54,15 @@
                         </small>
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
+                    <div class="form-group text-muted d-flex align-items-center">
+                        <input 
+                            type="checkbox"
+                            id="notification"
+                            name="notification"
+                            formControlName="notification"
+                            aria-label="Checkbox for following text input">
+                        <small style="margin-left: 2mm; text-shadow: rosybrown;">I want to be notified by email</small>
+                    </div>
                     <button [disabled]="!userInfoForm.valid" type="submit" class="btn btn-dark">Save</button>
                 </form>
             </div>
