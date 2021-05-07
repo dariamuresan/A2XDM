@@ -8,6 +8,7 @@ import { FavouritesComponent } from './favourites/favourites.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserEditProfileComponent } from './user-profile/user-edit-profile/user-edit-profile.component';
+import { AdminConsoleComponent } from './admin-console/admin-console.component';
 
 const routes: Routes = [
   { path : '', redirectTo : '/home', pathMatch: 'full'},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path : 'movie-details/:id', component : MovieDetailsComponent},
   { path : "search-result/:searchKey", component : SearchResultComponent},
   { path : "profile", children: [
+    { path : "admin", component : AdminConsoleComponent},
     { path : "", component : UserProfileComponent},
     { path : "edit", component : UserEditProfileComponent}
   ]}

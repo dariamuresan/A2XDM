@@ -25,6 +25,7 @@ import { RepliesComponent } from './movie-details/reviews/replies/replies.compon
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserEditProfileComponent } from './user-profile/user-edit-profile/user-edit-profile.component';
 import { SortSelectorComponent } from './movies/sort-selector/sort-selector.component';
+import { AdminConsoleComponent } from './admin-console/admin-console.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SortSelectorComponent } from './movies/sort-selector/sort-selector.comp
     RepliesComponent,
     UserProfileComponent,
     UserEditProfileComponent,
-    SortSelectorComponent
+    SortSelectorComponent,
+    AdminConsoleComponent
   ],
   imports: [
     BrowserModule,
