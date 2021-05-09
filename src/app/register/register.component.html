@@ -1,62 +1,103 @@
 <div class="col-md-8 offset-md-2">
     <br>
-    <div class="shadow-lg p-3 mb-5 bg-body rounded-corners">
+    <div class="shadow p-3 mb-5 bg-white rounded-corners">
         <div class="spaced">
             <div class="row">
                 <div class="col-sm">
                     <div class="spaced">
                         <h1 class = "d-flex justify-content-center display-4"> Register </h1>
                         <br>
-                        <form #form="ngForm">
+                        <form #form="ngForm" NgNativeValidate>
                             <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label for="name" class="col-sm-2 col-form-label">Name:</label>
-                                    <div class = " col-sm-10">
-                                        <input type="text" id="name" name="name" class = "form-control" ngModel>
+                                <div class="justify-content-center" >
+                                    <div class = " col align-self-center">
+                                        <input type="text" id="firstName" name="firstName" class = "form-control" placeholder="First Name"
+                                        #firstName="ngModel" (ngModel) = "user.firstName" required>
+                                        <span class="wrong-block" *ngIf="firstName.errors?.required && !firstName.valid && firstName.touched">Please enter your first name</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label for="email" class="col-sm-2 col-form-label">Email:</label>
-                                    <div class = " col-sm-10">
-                                        <input type="email" id="email" name="email" class = "form-control" ngModel>
+                                <div class="justify-content-center">
+                                    <div class = " col align-self-center">
+                                        <input type="text" id="lastName" name="lastName" class = "form-control" placeholder="Last Name"
+                                        #lastName="ngModel"(ngModel) = "user.lastName" required>
+                                        <span class="wrong-block" *ngIf="lastName.errors?.required && !lastName.valid && lastName.touched">Please enter your last name</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label for="password" class="col-sm-2 col-form-label">Password:</label>
-                                    <div class = " col-sm-10">
-                                        <input type="password" id="password" name="password" class = "form-control" ngModel>
+                                <div class="justify-content-center">
+                                    <div class = " col align-self-center">
+                                        <input type="text" id="username" name="username" class = "form-control" placeholder="Username"
+                                        #username="ngModel" (ngModel) = "user.username" required>
+                                        <span class="wrong-block" *ngIf="username.errors?.required && !username.valid && username.touched">Please enter a username</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label for="confirmpassword" class="col-sm-2 col-form-label">Confirm Password:</label>
-                                    <div class = " col-sm-10">
-                                        <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" ngModel>
+                                <div class="justify-content-center">
+                                    <div class = " col align-self-center">
+                                        <input type="email" id="email" name="email" class = "form-control" placeholder="Email"
+                                        #email="ngModel" (ngModel) = "user.email" required email>
+                                        <span class="wrong-block" *ngIf="!email.valid && email.touched">Please enter a valid email</span>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="justify-content-center">
+                                    <div class = "col align-self-center">
+                                        <input type="password" id="password" name="password" class = "form-control" placeholder="Password"
+                                        #password="ngModel" (ngModel) = "user.password" required  minlength="5" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$" >
+                                        <span class="wrong-block" *ngIf="password.errors?.required && !password.valid && password.touched">Please enter a password</span>
+                                        <span class="wrong-block" *ngIf="password.errors?.minlength && !password.valid && password.touched">The password must be at least 5 characters in length</span>
+                                        <span class="wrong-block" *ngIf="password.errors?.pattern && !password.errors?.minlength && !password.valid && password.touched">The password must contain at least one letter and one number</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="justify-content-center">
+                                    <div class = "col align-self-center">
+                                        <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" placeholder="Confirm Password"
+                                        #confirmpassword="ngModel" (ngModel) = "user.confirmpassword" required>
+                                        <span class="wrong-block" *ngIf="confirmpassword.errors?.required && !confirmpassword.valid && confirmpassword.touched">Please enter your password again</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col align-self-center">
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="user" value="user"
+                                        [(ngModel)] = "user.userRole" checked required>
+                                        <label class="form-check-label" for="userRole">
+                                          User
+                                        </label>
+                                      </div>
+                                      <div class="form-check-inline">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="admin" value="admin" 
+                                        (ngModel) = "user.userRole" required>
+                                        <label class="form-check-label" for="userRole">
+                                          Admin
+                                        </label>
+                                      </div>
                                 </div>
                             </div>
                             <div class = "d-flex justify-content-center spaced">
-                                <button class="btn btn-primary btn-lg btn-block  ">Register</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="form.invalid">Register</button>
                             </div>
-                            <br>
-                            <div style="margin-top: 70px">
-                                <div class="d-flex justify-content-center" >You already have an account?</div>
-                                    <div class = "d-flex justify-content-center">
-                                        <button class="btn btn-primary" routerLink = "/login">Login</button>
-                                    </div>
-                                </div>
                         </form>
+                        <div style="margin-top: 70px">
+                            <div class="d-flex justify-content-center" >You already have an account?</div>
+                                <div class = "d-flex justify-content-center">
+                                    <button class="btn btn-primary" routerLink = "/login">Login</button>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div class="col d-none d-lg-block"  style=" border-left: 1px solid rgba(44, 44, 44, 0.815);;">
                     <div class="d-flex justify-content-center spaced">
                         <div class=" polaroid">
-                            <img src="https://i.pinimg.com/474x/2e/56/19/2e56190423b3812453bdecc8fa6ec893.jpg" style="border-top-right-radius: 4%; border-bottom-right-radius: 4%;" alt="Responsive image">
+                            <img src="..\..\assets\Images\popcorn.png" style="border-top-right-radius: 4%; border-bottom-right-radius: 4%;" alt="Responsive image">
                         </div>
                     </div>
                 </div>

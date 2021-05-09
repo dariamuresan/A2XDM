@@ -1,31 +1,33 @@
 <div class="col-md-8 offset-md-2">
     <br>
-    <div class="shadow-lg p-3 mb-5 bg-body rounded-corners">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded-corners">
         <div class="spaced">
             <div class="row">
                 <div class="col-sm">
                     <div class="spaced">
                         <h1 class = "d-flex justify-content-center display-4"> Login </h1>
-                        <br>
-                        <form>
+                        <br><br>
+                        <form  #form="ngForm" NgNativeValidate>
                             <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label for="email" class="col-sm-2 col-form-label">Email:</label>
-                                    <div class = " col-sm-10">
-                                        <input type="email" id="email" class = "form-control">
+                                <div class="justify-content-center" >
+                                    <div class = " col align-self-center">
+                                        <input type="text" id="email" name="username" class = "form-control" placeholder="Email/Username"
+                                        #username="ngModel" (ngModel) = "username" required>
+                                        <span class="wrong-block" *ngIf="username.errors?.required && !username.valid && username.touched">Please enter your username or email</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label for="password" class="col-sm-2 col-form-label">Password:</label>
-                                    <div class = " col-sm-10">
-                                        <input type="password" id="password" class = "form-control">
+                                <div class="justify-content-center" >
+                                    <div class = " col align-self-center">
+                                        <input type="password" id="password" name="password" class = "form-control" placeholder="Password"
+                                        #password="ngModel" (ngModel) = "password" required>
+                                        <span class="wrong-block" *ngIf="password.errors?.required && !password.valid && password.touched">Please enter your password</span>
                                     </div>
                                 </div>
                             </div>
                             <div class = "d-flex justify-content-center spaced">
-                                <button class="btn btn-primary btn-lg btn-block  ">Login</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="form.invalid">Login</button>
                             </div>
                             <br>
                             <div style="margin-top: 70px">

@@ -6,4 +6,7 @@ import {Component} from '@angular/core';
     styleUrls: ['./login.component.css'],
 })
 
-export class LoginComponent{}
+export class LoginComponent{
+    username = null;
+    password = null;
+}
