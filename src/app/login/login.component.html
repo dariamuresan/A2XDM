@@ -5,8 +5,8 @@
             <p>{{error}}</p>
             <button class = "btn btn-danger" (click) = "onHandleError()">OK</button>
         </div>
-        <form>
-            <div class="form-group" #form="ngForm" (ngSubmit)="onSubmit()">
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
                 <label for="email">Username</label>
                 <input type="text" id="username" name="username" ngModel class = "form-control" required>
             </div>

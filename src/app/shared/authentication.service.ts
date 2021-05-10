@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { baseUrl } from '../app.properties';
 import { IUser } from '../user-profile/user.model';
-import { LoginResponse, User, UserCurrentSession } from './user.model';
+import { LoginResponse, UserCurrentSession } from './user.model';
 
 @Injectable({
   providedIn: 'root'
