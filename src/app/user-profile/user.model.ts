@@ -4,5 +4,8 @@ export interface IUser {
     lastName: string,
     email: string,
     profilePicture: string,
+    password?: string,
+    passwordConfirmation?: string,
+    role?:string
     isNotified : boolean;
 }

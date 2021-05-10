@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserEditProfileComponent } from './user-profile/user-edit-profile/user-edit-profile.component';
 import { SortSelectorComponent } from './movies/sort-selector/sort-selector.component';
 import { AdminConsoleComponent } from './admin-console/admin-console.component';
+import { AuthInterceptorService } from './shared/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { AdminConsoleComponent } from './admin-console/admin-console.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
