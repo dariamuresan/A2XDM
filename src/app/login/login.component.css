@@ -1,0 +1,15 @@
+div.polaroid {
+    background-color: rgba(255, 255, 255, 0);
+    border-top-right-radius: 4%;
+    border-bottom-right-radius: 4%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+input.ng-invalid.ng-touched {
+    border: 1px solid brown;
+  }
+
+.wrong-block {
+    color: brown ; 
+    font-size: smaller;
+  }

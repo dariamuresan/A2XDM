@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
-import { Routes } from '@angular/router';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -27,6 +25,7 @@ import { UserEditProfileComponent } from './user-profile/user-edit-profile/user-
 import { SortSelectorComponent } from './movies/sort-selector/sort-selector.component';
 import { AdminConsoleComponent } from './admin-console/admin-console.component';
 import { AuthInterceptorService } from './shared/auth-interceptor.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +48,8 @@ import { AuthInterceptorService } from './shared/auth-interceptor.service';
     UserProfileComponent,
     UserEditProfileComponent,
     SortSelectorComponent,
-    AdminConsoleComponent
+    AdminConsoleComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

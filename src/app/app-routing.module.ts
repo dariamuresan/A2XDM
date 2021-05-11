@@ -11,6 +11,7 @@ import { UserEditProfileComponent } from './user-profile/user-edit-profile/user-
 import { AdminConsoleComponent } from './admin-console/admin-console.component';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { AdminGuardService } from './shared/admin-guard.service';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   { path : '', redirectTo : '/home', pathMatch: 'full'},
@@ -24,7 +25,8 @@ const routes: Routes = [
     { path : "admin", canActivate: [AdminGuardService], component : AdminConsoleComponent},
     { path : "", component : UserProfileComponent},
     { path : "edit", component : UserEditProfileComponent}
-  ]}
+  ]},
+  { path : 'register', component : RegisterComponent}
 ]
 
 @NgModule({

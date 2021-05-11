@@ -7,29 +7,11 @@ import { LoginResponse } from '../shared/user.model';
 
 @Component({
     selector: 'app-login',
-    templateUrl: './login.component.html'
-
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
 })
 
 export class LoginComponent{
-
-    @ViewChild('form', {static:true}) form:NgForm;
-
-    constructor(private authService: AuthenticationService, private router:Router){}
-
-    error: string = null;
-
-    onSubmit(){
-        this.authService.login(this.form.value.username, this.form.value.password).subscribe(
-            (response: LoginResponse) => {
-                if(!response.success){
-                    this.error = response.errors.join(";");
-                }
-                else{
-                    this.router.navigate(['/home']);
-                }
-            }
-        );
-    }
-
+    username = null;
+    password = null;
 }
