@@ -1,0 +1,22 @@
+$theme-colors: (
+  "primary": #4aa5dc,
+  
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss"; 
+
+/* You can add global styles to this file, and also import other style files */
+body {
+  height: fit-content;
+  padding-top: 65px;
+  background-color:rgb(245, 231, 210);
+  /*background-image: url('https://images.pexels.com/photos/8892/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')*/
+}
+
+.rounded-corners{
+  border-radius: 4%;
+}
+
+.spaced{
+  padding: 30px;
+}

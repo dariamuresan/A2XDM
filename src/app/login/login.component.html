@@ -1,21 +1,53 @@
-<div class="row">
-    <div class="col">
-        <form>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" class = "form-control">
+<div class="col-md-8 offset-md-2">
+    <br>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded-corners">
+        <div class="spaced">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="spaced">
+                        <h1 class = "d-flex justify-content-center display-4"> Login </h1>
+                        <br><br>
+                        <form  #form="ngForm" NgNativeValidate>
+                            <div class="form-group">
+                                <div class="justify-content-center" >
+                                    <div class = " col align-self-center">
+                                        <input type="text" id="email" name="username" class = "form-control" placeholder="Email/Username"
+                                        #username="ngModel" (ngModel) = "username" required>
+                                        <span class="wrong-block" *ngIf="username.errors?.required && !username.valid && username.touched">Please enter your username or email</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="justify-content-center" >
+                                    <div class = " col align-self-center">
+                                        <input type="password" id="password" name="password" class = "form-control" placeholder="Password"
+                                        #password="ngModel" (ngModel) = "password" required>
+                                        <span class="wrong-block" *ngIf="password.errors?.required && !password.valid && password.touched">Please enter your password</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "d-flex justify-content-center spaced">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="form.invalid">Login</button>
+                            </div>
+                            <br>
+                            <div style="margin-top: 70px">
+                                <div class="d-flex justify-content-center" >You don't have an account?</div>
+                                    <div class = "d-flex justify-content-center">
+                                        <button class="btn btn-primary" routerLink = "/register">Register here</button>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col d-none d-lg-block"  style=" border-left: 1px solid rgba(44, 44, 44, 0.815);;">
+                    <div class="d-flex justify-content-center spaced">
+                        <div class=" polaroid">
+                            <img src="https://i.pinimg.com/474x/2e/56/19/2e56190423b3812453bdecc8fa6ec893.jpg" style="border-top-right-radius: 4%; border-bottom-right-radius: 4%;" alt="Responsive image">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" class = "form-control">
-            </div>
-            <div>
-                <button class="btn btn-primary">Login</button>
-            </div>
-            <div>
-                <div>You don't have an account?</div>
-                <button class="btn btn-primary">Register</button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
+       
