@@ -1,9 +1,12 @@
-<div class="row">
-    <div class="col-md-12">
-        <ul class="list-inline mt-2">
-            <li class="list-inline-item mb-3 mx-4" *ngFor="let movie of movies">
-                <app-movie-item [movie]="movie"></app-movie-item>
-            </li>
-          </ul>
+<div class="d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-inline mt-2">
+                <li class="list-inline-item mb-3" style="margin-right:0.2cm; margin-left: 0.9cm;" *ngFor="let movie of movies">
+                    <app-movie-item [movie]="movie"></app-movie-item>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+
