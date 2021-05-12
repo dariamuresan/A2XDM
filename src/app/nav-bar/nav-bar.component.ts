@@ -30,7 +30,7 @@ export class NavBarComponent implements OnInit {
   }
 
   onProfile() {
-    this.router.navigate(['profile']);
+    this.router.navigate(['profile', this.user.username]);
   }
 
   isActive() : boolean {
@@ -49,12 +49,12 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.authService.userSubject.subscribe(
       currentSession => {
-        console.log(currentSession);
         if(currentSession == null)
           this.active = false;
-        else
+        else {
           this.user = this.authService.getUserByUsername(currentSession.username);
           this.active = true;
+        }
       }
     )
   }

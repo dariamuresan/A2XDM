@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
 import { IUser } from '../user.model';
 
 @Component({
@@ -9,22 +10,21 @@ import { IUser } from '../user.model';
   styleUrls: ['./user-edit-profile.component.css']
 })
 export class UserEditProfileComponent implements OnInit {
-
-  user: IUser = {
-    username: 'dariamuresan',
-    firstName: 'Daria',
-    lastName: 'Muresan',
-    email: 'md@yahoo.com',
-    profilePicture: 'not-yet',
-    isNotified: false
-  };
+  username: string;
+  user: IUser;
 
   userInfoForm: FormGroup;
 
   constructor(private cd: ChangeDetectorRef,
-    private router : Router) { }
+    private router : Router,
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.username = this.activatedRoute.snapshot.params['username'];
+
+    this.user = this.authService.getUserByUsername(this.username);
+
     this.userInfoForm = new FormGroup({
       file: new FormControl(null),
       'firstName': new FormControl(this.user.firstName, Validators.required),

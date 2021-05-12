@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../shared/authentication.service';
+import { IUser } from './user.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,13 +10,21 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  user: IUser;
+  username: string;
+
+  constructor(private authService: AuthenticationService, 
+    private router : Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.username = this.activatedRoute.snapshot.params['username'];
+
+    this.user = this.authService.getUserByUsername(this.username);
   }
 
   onEdit() {
-    this.router.navigate(['profile/edit']);
+    this.router.navigate(['edit'], {relativeTo: this.activatedRoute});
   }
 
 }

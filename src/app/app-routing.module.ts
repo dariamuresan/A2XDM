@@ -23,8 +23,8 @@ const routes: Routes = [
   { path : "search-result/:searchKey", component : SearchResultComponent},
   { path : "profile", /*canActivate:[AuthGuardService],*/ children: [
     { path : "admin", /*canActivate: [AdminGuardService],*/ component : AdminConsoleComponent},
-    { path : "", component : UserProfileComponent},
-    { path : "edit", component : UserEditProfileComponent}
+    { path : ":username/edit", component : UserEditProfileComponent},
+    { path : ":username", component : UserProfileComponent}
   ]},
   { path : 'register', component : RegisterComponent}
 ]
