@@ -17,7 +17,8 @@ export class NavBarComponent implements OnInit {
     email: null,
     profilePicture: "",
     isNotified : false
-};
+  };
+
   active : boolean = false;
 
   whatWeSearchFor : string = "";
@@ -52,7 +53,15 @@ export class NavBarComponent implements OnInit {
         if(currentSession == null)
           this.active = false;
         else {
-          this.user = this.authService.getUserByUsername(currentSession.username);
+          this.authService.getUserByUsername(currentSession.username).subscribe( response => {
+            this.user.username = response.username;
+            this.user.firstName = response.firstname;
+            this.user.lastName = response.lastname;
+            this.user.email = response.email;
+            this.user.profilePicture = response.image;
+            this.user.role = response.role;
+            this.user.isNotified = response.newsletter;
+          });
           this.active = true;
         }
       }

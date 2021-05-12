@@ -17,22 +17,12 @@ export class AuthenticationService {
 
   userSubject: Subject<UserCurrentSession> = new BehaviorSubject<UserCurrentSession>(null);
 
-  getUserByUsername(username: string) : IUser {
-    let url: string = baseUrl + "/api/users/" + username;
+  getUserByUsername(username: string) : Observable<UserResponse> {
+    let url: string = baseUrl + "/users/" + username;
 
     let user: IUser;
 
-    this.httpClient.get<UserResponse>(url).subscribe( response => {
-      user.username = response.username;
-      user.firstName = response.firstname;
-      user.lastName = response.lastname;
-      user.email = response.email;
-      user.profilePicture = response.image;
-      user.role = response.role;
-      user.isNotified = response.newsletter;
-    });
-    
-    return user;
+    return this.httpClient.get<UserResponse>(url);
   }
 
   getCurrentLoggedUser() : string {
@@ -47,7 +37,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): Observable<LoginResponse>{
-    let url: string = baseUrl + "/api/login";
+    let url: string = baseUrl + "/users/login";
     return this.httpClient.post<LoginResponse>(url, {
       username: username,
       password: password
@@ -58,13 +48,19 @@ export class AuthenticationService {
     );
   }
 
-  register(user: IUser): Observable<LoginResponse>{
-    let url: string = baseUrl + "/api/register";
+  register(user: UserResponse): Observable<LoginResponse>{
+    let url: string = baseUrl + "/users/register";
     return this.httpClient.post<LoginResponse>(url, user).pipe(
       tap((response: LoginResponse) => {
         this.handleLoginResponse(response, user.username);
       })
     );
+  }
+
+  editUser(user: UserResponse): Observable<any> {
+    let url: string = baseUrl + "/users/" + user.username;
+
+    return this.httpClient.put<any>(url, user);
   }
 
   logout(): void{

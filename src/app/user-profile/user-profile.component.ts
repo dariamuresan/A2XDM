@@ -10,7 +10,14 @@ import { IUser } from './user.model';
 })
 export class UserProfileComponent implements OnInit {
 
-  user: IUser;
+  user: IUser = {
+    username: null,
+    firstName: null,
+    lastName: null,
+    email: null,
+    profilePicture: "",
+    isNotified : false
+  };
   username: string;
 
   constructor(private authService: AuthenticationService, 
@@ -20,7 +27,15 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.username = this.activatedRoute.snapshot.params['username'];
 
-    this.user = this.authService.getUserByUsername(this.username);
+    this.authService.getUserByUsername(this.username).subscribe( response => {
+      this.user.username = response.username;
+      this.user.firstName = response.firstname;
+      this.user.lastName = response.lastname;
+      this.user.email = response.email;
+      this.user.profilePicture = response.image;
+      this.user.role = response.role;
+      this.user.isNotified = response.newsletter;
+    });
   }
 
   onEdit() {

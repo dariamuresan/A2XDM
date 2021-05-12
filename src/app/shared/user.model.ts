@@ -14,6 +14,8 @@ export interface UserResponse {
     firstname: string,
     lastname: string,
     email: string,
+    password?: string, 
+    passwordConfirmation?: string,
     role: string,
     image: string,
     newsletter : boolean

@@ -2,7 +2,7 @@
     <div class="card mb-3 shadow-lg" style="min-width: 1300px; min-height: 400px; margin-top: 3cm;">
         <div class="row no-gutters" style="min-height: 400px;">
             <div class="col-md-4 align-self-center">
-                <img class="rounded-circle mx-auto d-block"  width="150px" src="https://images.pexels.com/photos/1013335/pexels-photo-1013335.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
+                <img class="rounded-circle mx-auto d-block"  width="150px" [src]="user.profilePicture" alt="...">
                 <p class="text-center">Hello, {{user.username}}!</p>
             </div>
             <div class="col-md-7 align-self-center">

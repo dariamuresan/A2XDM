@@ -15,7 +15,7 @@
                                             type="text" 
                                             id="email" 
                                             class = "form-control" 
-                                            placeholder="Email/Username"
+                                            placeholder="Username"
                                             formControlName="username">
                                         <ng-container *ngIf="loginForm.get('username') as username">
                                             <span class="wrong-block" *ngIf="username.errors?.required && !username.valid && username.touched">Please enter your username or email</span>
