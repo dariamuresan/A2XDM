@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../shared/authentication.service';
+import { IUser } from '../user-profile/user.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,13 +10,13 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  private user : number;
+  user : IUser;
+  active : boolean;
 
   whatWeSearchFor : string = "";
 
-  constructor(private router : Router) { 
-    this.user = 1;
-  }
+  constructor(private router : Router,
+    private authService: AuthenticationService) {}
 
   onInput() {
     this.router.navigate(['search-result', this.whatWeSearchFor]);
@@ -24,19 +26,28 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['profile']);
   }
 
-  isActive() : number {
-    return this.user;
+  isActive() : boolean {
+    return this.active;
   }
 
   onLogout() {
-    this.user = 0;
+    this.router.navigate(['home']);
   }
 
   onLogin() {
-    this.user = 1;
+    this.router.navigate(['login']);
   }
 
   ngOnInit(): void {
+    this.authService.userSubject.subscribe(
+      currentSession => {
+        if(currentSession == null)
+          this.active = false;
+        else
+          this.user = this.authService.getUserByUsername(currentSession.username);
+          this.active = true;
+      }
+    )
   }
 
 }

@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { baseUrl } from '../app.properties';
 import { IUser } from '../user-profile/user.model';
-import { LoginResponse, UserCurrentSession } from './user.model';
+import { LoginResponse, UserCurrentSession, UserResponse } from './user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,24 @@ export class AuthenticationService {
   private user: UserCurrentSession = null;
 
   userSubject: Subject<UserCurrentSession> = new BehaviorSubject<UserCurrentSession>(null);
+
+  getUserByUsername(username: string) : IUser {
+    let url: string = baseUrl + "/api/users/" + username;
+
+    let user: IUser;
+
+    this.httpClient.get<UserResponse>(url).subscribe( response => {
+      user.username = response.username;
+      user.firstName = response.firstname;
+      user.lastName = response.lastname;
+      user.email = response.email;
+      user.profilePicture = response.image;
+      user.role = response.role;
+      user.isNotified = response.newsletter;
+    });
+    
+    return user;
+  }
 
   getCurrentLoggedUser() : string {
     return this.user.username;
