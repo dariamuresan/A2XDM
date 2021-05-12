@@ -10,8 +10,15 @@ import { IUser } from '../user-profile/user.model';
 })
 export class NavBarComponent implements OnInit {
 
-  user : IUser;
-  active : boolean;
+  user : IUser = {
+    username: null,
+    firstName: null,
+    lastName: null,
+    email: null,
+    profilePicture: "",
+    isNotified : false
+};
+  active : boolean = false;
 
   whatWeSearchFor : string = "";
 
@@ -31,6 +38,7 @@ export class NavBarComponent implements OnInit {
   }
 
   onLogout() {
+    this.authService.logout();
     this.router.navigate(['home']);
   }
 
@@ -41,6 +49,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.authService.userSubject.subscribe(
       currentSession => {
+        console.log(currentSession);
         if(currentSession == null)
           this.active = false;
         else
