@@ -5,7 +5,9 @@
             <app-stars [starsNumber]="review.stars"></app-stars>
             <small style="text-shadow: peachpuff;">{{ review.date }} - </small>
             <cite>{{review.username}}</cite> says: <cite>{{review.comment}}</cite>
-            <app-replies [replies]="review.replies" [reviewId]="review.id"></app-replies>
+            <div *ngIf="currentLoggedUser != null">
+                <app-replies [replies]="review.replies" [reviewId]="review.id"></app-replies>
+            </div>
             <div *ngIf="review.username == currentLoggedUser" style="margin-top: 10px;">
                 <a (click)="onDelete(review)" style="color: orangered; font-size: 12px; cursor: pointer; margin-right: 10px;">Delete</a>
                 <a (click)="onClick('edit-form')" style="color: slategrey; font-size: 12px; cursor: pointer;">Edit</a>
