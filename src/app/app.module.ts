@@ -26,6 +26,7 @@ import { SortSelectorComponent } from './movies/sort-selector/sort-selector.comp
 import { AdminConsoleComponent } from './admin-console/admin-console.component';
 import { AuthInterceptorService } from './shared/auth-interceptor.service';
 import { RegisterComponent } from './register/register.component';
+import { RecommendedComponent } from './home/recommended/recommended.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { RegisterComponent } from './register/register.component';
     UserEditProfileComponent,
     SortSelectorComponent,
     AdminConsoleComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecommendedComponent
   ],
   imports: [
     BrowserModule,

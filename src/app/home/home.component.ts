@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../shared/authentication.service';
 
 export interface HomePageMovieCategory {
   title : string,
   sortMethod : string;
+  generes?: string;
 }
 
 @Component({
@@ -12,6 +14,8 @@ export interface HomePageMovieCategory {
 })
 
 export class HomeComponent implements OnInit {
+
+  username : string = null;
 
   topRated : HomePageMovieCategory = { 
     title: 'Top rated',
@@ -28,9 +32,10 @@ export class HomeComponent implements OnInit {
     sortMethod: 'newest'
   };
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.username = this.authService.getCurrentLoggedUser();
   }
 
 }
