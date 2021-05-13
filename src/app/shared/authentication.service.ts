@@ -26,7 +26,7 @@ export class AuthenticationService {
   }
 
   getCurrentLoggedUser() : string {
-    return this.user.username;
+    return this.user == null ? null : this.user.username;
   }
 
   private handleLoginResponse(response: LoginResponse, username: string){
@@ -38,6 +38,7 @@ export class AuthenticationService {
 
   login(username: string, password: string): Observable<LoginResponse>{
     let url: string = baseUrl + "/users/login";
+    
     return this.httpClient.post<LoginResponse>(url, {
       username: username,
       password: password

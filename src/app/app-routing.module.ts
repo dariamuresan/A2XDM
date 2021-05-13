@@ -21,8 +21,8 @@ const routes: Routes = [
   { path : "favourites", component : FavouritesComponent},
   { path : 'movie-details/:id', component : MovieDetailsComponent},
   { path : "search-result/:searchKey", component : SearchResultComponent},
-  { path : "profile", /*canActivate:[AuthGuardService],*/ children: [
-    { path : "admin", /*canActivate: [AdminGuardService],*/ component : AdminConsoleComponent},
+  { path : "profile", canActivate:[AuthGuardService], children: [
+    { path : "admin", canActivate: [AdminGuardService], component : AdminConsoleComponent},
     { path : ":username/edit", component : UserEditProfileComponent},
     { path : ":username", component : UserProfileComponent}
   ]},

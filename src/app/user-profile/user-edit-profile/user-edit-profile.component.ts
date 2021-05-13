@@ -42,9 +42,6 @@ export class UserEditProfileComponent implements OnInit {
       this.user.profilePicture = response.image;
       this.user.role = response.role;
       this.user.isNotified = response.newsletter;
-      this.user.password = response.password;
-      this.user.passwordConfirmation = response.passwordConfirmation;
-      this.user.role = response.username;
       
       this.userInfoForm = new FormGroup({
         file: new FormControl(null),
@@ -62,8 +59,6 @@ export class UserEditProfileComponent implements OnInit {
             firstname: this.userInfoForm.value['firstName'],
             lastname: this.userInfoForm.value['lastName'],
             email: this.userInfoForm.value['email'],
-            password: this.user.password, 
-            passwordConfirmation: this.user.passwordConfirmation,
             role: this.user.role,
             image: this.userInfoForm.value['file'] == null ? this.user.profilePicture : this.userInfoForm.value['file'],
             newsletter : this.userInfoForm.value['notification']
