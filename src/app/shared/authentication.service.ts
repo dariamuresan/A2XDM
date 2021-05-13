@@ -33,6 +33,7 @@ export class AuthenticationService {
     if(response.success){
       this.userSubject.next({username: username, token: response.token});
       this.user = {username: username, token: response.token};
+      localStorage.setItem('user', JSON.stringify(this.user));
     }
   }
 
@@ -67,6 +68,16 @@ export class AuthenticationService {
   logout(): void{
     this.user = null;
     this.userSubject.next(null);
+    localStorage.removeItem('user');
+  }
+
+  autoLogin():void{
+    const localStoredUser:UserCurrentSession = JSON.parse(localStorage.getItem('user'));
+
+    if(!localStoredUser)
+        return;
+    this.user = localStoredUser;
+    this.userSubject.next(localStoredUser);
   }
 
 }

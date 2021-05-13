@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../shared/authentication.service';
 import { MovieRestService } from '../shared/movie-rest.service';
 import { IMovie, IGenre, IActor } from '../shared/movie.model';
+import { UserCurrentSession } from '../shared/user.model';
 import { IUser } from '../user-profile/user.model';
 import { IReview } from './reviews/review.model';
 
@@ -29,6 +30,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   movieSubscription : Subscription;
   reviewsSubscription : Subscription;
   favouriteSubscription : Subscription;
+  userSubscription: Subscription;
 
   constructor(private movieService : MovieRestService, 
             private activatedRoute: ActivatedRoute,
@@ -39,6 +41,15 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     let movieId = this.activatedRoute.snapshot.params['id'];
 
     this.username = this.authService.getCurrentLoggedUser();
+
+    this.userSubscription = this.authService.userSubject.subscribe(
+      (user: UserCurrentSession) => {
+        if(!user)
+          this.username = null;
+        else
+          this.username = user.username;
+      }
+    )
 
     this.movieSubscription = this.movieService.getMovie(movieId).subscribe(movie => {
       this.movie = movie;
@@ -92,6 +103,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.movieSubscription.unsubscribe();
     this.reviewsSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
 }
