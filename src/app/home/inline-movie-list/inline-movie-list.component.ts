@@ -42,7 +42,7 @@ export class InlineMovieListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movieService.getCompressedMovies(0, this.movieCategory.sortMethod)
+    this.movieService.getCompressedMovies(0, this.movieCategory.sortMethod, [this.movieCategory.generes])
       .subscribe(movies => {this.movies = movies; 
                             this.moviesSlide1 = this.getMoviesFromIndexTo(0, 9, movies);
                             this.moviesSlide2 = this.getMoviesFromIndexTo(9, 18, movies); });

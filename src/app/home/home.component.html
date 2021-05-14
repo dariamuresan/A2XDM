@@ -1,8 +1,10 @@
-<div *ngIf="username != null">
+<div *ngIf="userCurrentSession != null">
     <app-recommended></app-recommended>
 </div>
 <app-inline-movie-list [componentId]="1" [movieCategory]="topRated"></app-inline-movie-list>
 <app-inline-movie-list [componentId]="2" [movieCategory]="newest"></app-inline-movie-list>
-<app-inline-movie-list [componentId]="3" [movieCategory]="byTitle"></app-inline-movie-list>
-<app-inline-movie-list [componentId]="4" [movieCategory]="topRated"></app-inline-movie-list>
-<app-inline-movie-list [componentId]="5" [movieCategory]="topRated"></app-inline-movie-list>
+<app-inline-movie-list [componentId]="3" [movieCategory]="topGeneres[0]"></app-inline-movie-list>
+<app-inline-movie-list [componentId]="4" [movieCategory]="topGeneres[1]"></app-inline-movie-list>
+<app-inline-movie-list [componentId]="5" [movieCategory]="topGeneres[2]"></app-inline-movie-list>
+<app-inline-movie-list [componentId]="6" [movieCategory]="topGeneres[3]"></app-inline-movie-list>
+

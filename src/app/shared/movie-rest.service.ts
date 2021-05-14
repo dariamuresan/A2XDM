@@ -32,8 +32,8 @@ export class MovieRestService {
     });
   }
 
-  getRecommended() : Observable<ICompressedMovie[]> {
-    let url = baseUrl + "/movies/recommended";
+  getRecommended(username : string) : Observable<ICompressedMovie[]> {
+    let url = baseUrl + "/movies/recommended/" + username;
 
     return this.http.get<ICompressedMovie[]>(url);
   }

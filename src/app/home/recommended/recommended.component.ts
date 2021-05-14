@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
 import { MovieRestService } from 'src/app/shared/movie-rest.service';
 import { ICompressedMovie } from 'src/app/shared/movie.model';
 
@@ -12,7 +13,10 @@ export class RecommendedComponent implements OnInit {
   moviesSlide1 : ICompressedMovie[];
   moviesSlide2 : ICompressedMovie[];
 
-  constructor(private movieService : MovieRestService) {
+  username: string;
+
+  constructor(private movieService : MovieRestService,
+    private authService: AuthenticationService) {
   }
 
   getMoviesFromIndexTo(start : number, end : number, movies : ICompressedMovie[]) : ICompressedMovie[]{
@@ -28,7 +32,9 @@ export class RecommendedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movieService.getRecommended()
+    this.username = this.authService.getCurrentLoggedUser();
+
+    this.movieService.getRecommended(this.username)
       .subscribe(movies => {this.movies = movies; 
                             this.moviesSlide1 = this.getMoviesFromIndexTo(0, 9, movies);
                             this.moviesSlide2 = this.getMoviesFromIndexTo(9, 18, movies); });
