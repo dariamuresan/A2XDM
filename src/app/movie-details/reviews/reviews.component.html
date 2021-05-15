@@ -1,100 +1,111 @@
 <div class="container">
     <h5>Reviews</h5>
-    <blockquote *ngFor="let review of reviews">
-        <app-stars [starsNumber]="review.stars"></app-stars>
-        <small style="text-shadow: peachpuff;">{{ review.date }} - </small>
-        <cite>{{review.username}}</cite> says: <cite>{{review.comment}}</cite>
-        <app-replies [replies]="review.replies" [reviewId]="review.id"></app-replies>
-        <div *ngIf="review.username == currentLoggedUser" style="margin-top: 10px;">
-            <a (click)="onDelete(review)" style="color: orangered; font-size: 12px; cursor: pointer; margin-right: 10px;">Delete</a>
-            <a (click)="onClick('edit-form')" style="color: slategrey; font-size: 12px; cursor: pointer;">Edit</a>
-        </div>
-    </blockquote>
-
-    <div *ngIf="!userAddedReview">
-        <h5>Add your review</h5>
-        <form class="review-form" (ngSubmit)="onAddReview()" #addForm="ngForm">
-            <div class="form-group">
-                <label for="stars">Rate the movie - Stars</label>
-                <select 
-                    class="form-control"
-                    id="stars"
-                    name="stars"
-                    [(ngModel)]="newReview.stars"
-                    required
-                    #stars="ngModel">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                </select>
-                <small *ngIf="!stars.valid && stars.touched" class="text-danger">This field is required!</small>
+    <div *ngIf="reviews.length != 0">
+        <blockquote *ngFor="let review of reviews">
+            <app-stars [starsNumber]="review.stars"></app-stars>
+            <small style="text-shadow: peachpuff;">{{ review.date }} - </small>
+            <cite>{{review.username}}</cite> says: <cite>{{review.comment}}</cite>
+            <div *ngIf="currentLoggedUser != null">
+                <app-replies [replies]="review.replies" [reviewId]="review.id"></app-replies>
             </div>
-            <div class="form-group">
-                <textarea 
-                    id="comment"
-                    placeholder="Write a short review for the movie..." 
-                    class="form-control materialize-textarea"
-                    [(ngModel)]="newReview.comment"
-                    name="comment">
-                </textarea>
+            <div *ngIf="review.username == currentLoggedUser" style="margin-top: 10px;">
+                <a (click)="onDelete(review)" style="color: orangered; font-size: 12px; cursor: pointer; margin-right: 10px;">Delete</a>
+                <a (click)="onClick('edit-form')" style="color: slategrey; font-size: 12px; cursor: pointer;">Edit</a>
             </div>
-
-            <div class="form-group">
-                Preview: 
-                from: <cite><b> {{currentLoggedUser}}</b> - </cite>stars:
-                <i> <b>{{newReview?.stars}}</b></i> - message: <i><b>{{newReview?.comment}}</b></i>
-            </div>
-
-            <div class="right-align">
-                <button 
-                    type="submit" 
-                    class="btn btn-dark"
-                    [disabled]="!addForm.valid">
-                        Submit Review
-                </button>
-            </div>
-        </form>
+        </blockquote>
+    </div>
+    <div *ngIf="reviews.length == 0">
+        <blockquote>
+            No reviews yet!
+        </blockquote>
     </div>
 
-    <div *ngIf="userAddedReview">
-        <h5 id="edit-form">Edit your review</h5>
-        <form class="review-form" (ngSubmit)="onEditReview()" #editForm="ngForm">
-            <div class="form-group">
-                <label for="stars">Rate the movie - Stars</label>
-                <select 
-                    class="form-control"
-                    id="stars"
-                    name="stars"
-                    [(ngModel)]="userReview.stars"
-                    required
-                    #stars="ngModel">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                </select>
-                <small *ngIf="!stars.valid && stars.touched" class="text-danger">This field is required!</small>
-            </div>
-            <div class="form-group">
-                <textarea 
-                    id="comment"
-                    class="form-control materialize-textarea"
-                    [(ngModel)]="userReview.comment"
-                    name="comment">
-                </textarea>
-            </div>
-
-            <div class="right-align">
-                <button 
-                    type="submit" 
-                    class="btn btn-dark"
-                    [disabled]="!editForm.valid">
-                        Edit Review
-                </button>
-            </div>
-        </form>
+    <div *ngIf="currentLoggedUser != null">
+        <div *ngIf="!userAddedReview">
+            <h5>Add your review</h5>
+            <form class="review-form" (ngSubmit)="onAddReview()" #addForm="ngForm">
+                <div class="form-group">
+                    <label for="stars">Rate the movie - Stars</label>
+                    <select 
+                        class="form-control"
+                        id="stars"
+                        name="stars"
+                        [(ngModel)]="newReview.stars"
+                        required
+                        #stars="ngModel">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                    </select>
+                    <small *ngIf="!stars.valid && stars.touched" class="text-danger">This field is required!</small>
+                </div>
+                <div class="form-group">
+                    <textarea 
+                        id="comment"
+                        placeholder="Write a short review for the movie..." 
+                        class="form-control materialize-textarea"
+                        [(ngModel)]="newReview.comment"
+                        name="comment">
+                    </textarea>
+                </div>
+    
+                <div class="form-group">
+                    Preview: 
+                    from: <cite><b> {{currentLoggedUser}}</b> - </cite>stars:
+                    <i> <b>{{newReview?.stars}}</b></i> - message: <i><b>{{newReview?.comment}}</b></i>
+                </div>
+    
+                <div class="right-align">
+                    <button 
+                        type="submit" 
+                        class="btn btn-dark"
+                        [disabled]="!addForm.valid">
+                            Submit Review
+                    </button>
+                </div>
+            </form>
+        </div>
+    
+        <div *ngIf="userAddedReview">
+            <h5 id="edit-form">Edit your review</h5>
+            <form class="review-form" (ngSubmit)="onEditReview()" #editForm="ngForm">
+                <div class="form-group">
+                    <label for="stars">Rate the movie - Stars</label>
+                    <select 
+                        class="form-control"
+                        id="stars"
+                        name="stars"
+                        [(ngModel)]="userReview.stars"
+                        required
+                        #stars="ngModel">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                    </select>
+                    <small *ngIf="!stars.valid && stars.touched" class="text-danger">This field is required!</small>
+                </div>
+                <div class="form-group">
+                    <textarea 
+                        id="comment"
+                        class="form-control materialize-textarea"
+                        [(ngModel)]="userReview.comment"
+                        name="comment">
+                    </textarea>
+                </div>
+    
+                <div class="right-align">
+                    <button 
+                        type="submit" 
+                        class="btn btn-dark"
+                        [disabled]="!editForm.valid">
+                            Edit Review
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

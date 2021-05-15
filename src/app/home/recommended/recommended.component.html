@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
-        <h3 class="text-dark m-3">{{movieCategory.title}}</h3>
-        <div [id]="getId()" class="carousel slide" data-touch="false" data-interval="false">
+        <h3 class="text-dark m-3">Recommended for you...</h3>
+        <div id="recommended" class="carousel slide" data-touch="false" data-interval="false">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <ul class="list-inline d-flex justify-content-center align-items-center">
@@ -18,11 +18,11 @@
                     </ul>
                 </div>
             </div>
-            <a class="carousel-control-prev" style="width: 1%;" [href]="getReference(componentId)" role="button" data-slide="prev">
+            <a class="carousel-control-prev" style="width: 1%;" href="#recommended" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" style="width: 1%;" [href]="getReference(componentId)" role="button" data-slide="next">
+            <a class="carousel-control-next" style="width: 1%;" href="#recommended" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>

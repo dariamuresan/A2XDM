@@ -4,6 +4,7 @@ import {switchMap, tap} from 'rxjs/operators';
 import { FilterService } from '../shared/filter.service';
 import { MovieRestService } from '../shared/movie-rest.service';
 import { ICompressedMovie } from '../shared/movie.model';
+import { SortService } from '../shared/sort.service';
 
 @Component({
   selector: 'app-movies',
@@ -17,15 +18,18 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   genresActiveFilters : string[] = [];
   ratingActiveFilters : string = "";
+  sortMethod : string = "topRated";
   
   subscription:Subscription;
 
   pageSubject : Subject<number> = new Subject<number>();
   
-  constructor(private filterService : FilterService, private movieService : MovieRestService) { }
+  constructor(private filterService : FilterService,
+    private sortService : SortService, 
+    private movieService : MovieRestService) { }
 
   ngOnInit(): void {
-    this.getCompressedMovies(this.page, "newest", this.genresActiveFilters, this.ratingActiveFilters);
+    this.getCompressedMovies(this.page, this.sortMethod, this.genresActiveFilters, this.ratingActiveFilters);
 
     let requestObservable : Observable<any> = merge(
         this.pageSubject.pipe(
@@ -48,11 +52,18 @@ export class MoviesComponent implements OnInit, OnDestroy {
                     this.ratingActiveFilters = ratingFilters;
                 }
             )
-        )
+        ),
+        this.sortService.sortMethodSubject.pipe(
+          tap(
+              (sortMethod : string) => {
+                  this.sortMethod = sortMethod;
+              }
+          )
+      )
     ).pipe(
         switchMap(
             (value:any, index:number) => {
-                return this.getCompressedMovies(this.page, "newest", this.genresActiveFilters, this.ratingActiveFilters);
+                return this.getCompressedMovies(this.page, this.sortMethod, this.genresActiveFilters, this.ratingActiveFilters);
             }
         )
     );

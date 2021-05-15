@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <a class="navbar-brand p-2" routerLink = "/home">A2xDM</a>
     <div class="collapse navbar-collapse">
-        <ul *ngIf = "isActive()" class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" routerLink = "/movies">Movies</a>
             </li>
         </ul>
-        <div *ngIf = "isActive()" class="">
+        <div>
             <input 
             class="form-control mr-sm-2 bg-dark text-white" 
             type="search" 
@@ -15,20 +15,14 @@
             [(ngModel)]="whatWeSearchFor"
             (input)="onInput()"
             aria-label="Search">
-            <!--<button 
-            class="btn btn-outline-light my-2 my-sm-0"
-            (click)="onSearch()" 
-            type="submit">
-                Search
-            </button>-->
         </div>
-        <ul *ngIf = "isActive()" class="navbar-nav ml-auto">
+        <ul *ngIf="isActive()" class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" style="cursor: pointer;" routerLink="/favourites">Favourites</a>
             </li>
             <li class="nav-item d-flex align-items-center">
-                <a href="#">
-                    <img class="rounded-circle" height="35px" src="https://images.pexels.com/photos/64219/dolphin-marine-mammals-water-sea-64219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                <a (click)="onProfile()">
+                    <img class="rounded-circle" width="40px" [src]="user.profilePicture">
                 </a>
             </li>
             <li class="nav-item">
