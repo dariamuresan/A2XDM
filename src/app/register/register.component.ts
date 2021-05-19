@@ -45,12 +45,12 @@ export class RegisterComponent implements OnInit {
         console.log(userResponse);
 
         this.authService.register(userResponse).subscribe(
-            response => {
-                if(response.success)
-                    this.router.navigate(['home']);
-                else {
-                    alert(response.errors.join(","));
-                    this.registerForm.reset;
+            {   
+                next: () => {
+                        this.router.navigate(['home']);
+                },
+                error: () => {
+                    alert("Username already exists!");
                 }
             }
         )

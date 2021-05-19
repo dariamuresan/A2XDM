@@ -26,11 +26,13 @@ export class LoginComponent implements OnInit {
 
     onLogin() {
         this.authenticationService.login(this.loginForm.value['username'], this.loginForm.value['password']).subscribe(
-            response => {
-                if(response.success)
-                    this.router.navigate(['home']);
-                else {
-                    alert(response.errors.join(","));
+            {
+                next: () => {
+                        this.router.navigate(['home']);
+                },
+
+                error: () => {
+                    alert("Ups :( Username or password not correct!");
                     this.loginForm.reset;
                 }
             }

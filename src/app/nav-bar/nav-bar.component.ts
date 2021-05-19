@@ -34,6 +34,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['profile', this.user.username]);
   }
 
+  onConsole() {
+    this.router.navigate(['console']);
+  }
+
   isActive() : boolean {
     return this.active;
   }
